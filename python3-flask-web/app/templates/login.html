@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block title %}登录{% endblock %}
+
+{% block head %}
+    <link href="{{url_for('static', filename='css/login_regist.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h3 class="logintitle">欢迎登陆</h3>
+        <form class="form-container" id="loginform" name="loginform" method="post" action="{{ url_for('index.to_login') }}">
+            <div class="form-group input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" name="username" class="form-control" placeholder="用户名" value="{{ username }}" required autofocus>
+            </div>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input type="password" name="password" class="form-control" placeholder="密码" required>
+            </div>
+            {#<div class="row">
+                <div class="col-md-8">
+                    <input type="text" id="kaptchaCode" name="kaptchaCode" class="form-control" placeholder="请输入验证码" required>
+                </div>
+                <img src="Kaptcha.jpg" id="kaptcha" alt="验证码">
+                <a href="javascript:changeImg()">换一张</a>
+            </div>#}
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember" value="1"> 下次自动登录
+                </label>
+            </div>
+            <div>
+                <span class="message">{{ message }}</span>
+            </div>
+            <input type="hidden" name="from_url_fun" value="{{ from_url_fun }}">
+            <button id="button" class="btn btn-primary btn-block" type="submit">立即登录</button>
+        </form>
+    </div>
+{% endblock %}

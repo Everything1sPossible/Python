@@ -1,0 +1,42 @@
+<!doctype html>
+<title>Chapter 404: The Lost Page</title>
+<style type=text/css>
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: url({{ url_for('static', filename='images/ship.png') }}) no-repeat center right;
+}
+body:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: url({{ url_for('static', filename='images/mask.png') }}) repeat-y left;
+}
+a { color: #004B6B; }
+a:hover { color: #6D4100; }
+h1 {
+  font-family: 'Garamond', 'Georgia', serif;
+  font-weight: normal;
+  color: #222;
+  font-size: 36px;
+  padding: 50px 0 10px 50px;
+  margin: 0;
+}
+p {
+  font-family: 'Georgia', serif;
+  color: #000;
+  font-size: 17px;
+  padding: 10px 0 0 90px;
+  margin: 0;
+  width: 360px;
+}
+</style>
+<h1>第500章：出错的页面</h1>
+<p>八百里加急！此水域经常出没吃人鲨！。</p>
+<p>所以请让他们回到<a href="{{ url_for('index.home') }}"/>安全的水域</a>.</p>

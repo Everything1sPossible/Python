@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% import '_macros.html' as macros %}
+{% block title %}文章详情{% endblock %}
+
+{% block head %}
+    <link href="{{url_for('static', filename='css/article_management/article_detail.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h3 class="article-title">{{ article_detail.arTitle }}</h3>
+        <p class="article-info">
+            <span>作者: {{ article_detail.author.username }}</span>
+            <span>时间: {{ article_detail.create_time }}</span>
+        </p>
+        <hr>
+        <p class="article-content">{{ article_detail.arContent }}</p>
+        <hr>
+        <h4>评论({{ comments|length }}):</h4>
+        <form method="post" action="{{ url_for('index.to_add_comment', article_id=article_detail.id) }}">
+            <div class="form-group">
+                <input type="text" name="acContent" class="form-control" placeholder="请输入评论">
+            </div>
+            <div class="form-group form-button">
+                <button id="button" class="btn btn-primary" type="submit">立即评论</button>
+            </div>
+        </form>
+        <ul class="comment-list">
+            {% for comment in comments%}
+                <li>
+                    <div class="comment-info">
+                        <img class="avatar" src="{{url_for('static', filename='images/ChinaDragon.jpg')}}">
+                        <span class="comment-author">{{ comment.author.username }}</span>
+                        <span class="comment-time">{{ comment.create_time }}</span>
+                    </div>
+                <p class="comment">{{ comment.acContent }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if pagination %}
+            <nav style="text-align: center">
+                <div class="pagination">
+                    {{ macros.pagination_widget(pagination, 'index.to_article_detail', article_id=article_detail.id) }}
+                </div>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% import '_macros.html' as macros %}
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <ul class="article-list-group">
+            {% for article in articles %}
+                <li>
+                    <div class="avatar-group">
+                        <img class="avatar" src="{{url_for('static', filename='images/ChinaDragon.jpg')}}">
+                    </div>
+                    <div class="article-group">
+                        <p class="article-title"><a href="{{ url_for('index.to_article_detail',article_id=article.id)}}">{{ article.arTitle }}</a></p>
+                        <p class="article-content">{{ article.arContent }}</p>
+                        <p class="article-info">
+                            <span class="article-author">{{ article.author.username }}</span>
+                            <span class="article-time">{{ article.create_time }}</span>
+                        </p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if pagination %}
+            <nav style="text-align: center">
+                <div class="pagination">
+                    {{ macros.pagination_widget(pagination, 'index.home', search_code=search_code) }}
+                </div>
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}

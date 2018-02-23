@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}-ChinaDragon</title>
+    <link href="{{url_for('static', filename='js/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='js/bootstrap/css/bootstrap-select.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='js/jquery/jquery-1.11.3.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap/js/bootstrap-select.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap/js/defaults-zh_CN.min.js')}}"></script>
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand alogo" href="#">
+              <img class="logo" src="{{url_for('static', filename='images/ChinaDragon.jpg')}}">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('index.home') }}">首页</a></li>
+            <li><a href="{{ url_for('index.to_add_article') }}">发布问答</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" method="post" action="{{ url_for('index.home') }}">
+            <div class="form-group">
+              <input type="text" name="search_code" class="form-control" placeholder="请输入关键词">
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+              {% if session.get('user_id') %}
+                  {#此处引用自定义过滤器对储存的userid + username进行截断处理,因为userid默认是uuid 36位,所以此处写死37#}
+                  <li><a href="#">{{ session.get('user_id')|interval(37) }}</a></li>
+                  <li><a href="{{ url_for('index.login_out') }}">注销</a></li>
+              {% else %}
+                  <li><a href="{{ url_for('index.to_login') }}">登录</a></li>
+                  <li><a href="{{ url_for('index.to_regist') }}">注册</a></li>
+              {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+    {% block body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,38 @@
+.main{
+    background: #ffffff;
+    width: 730px;
+    margin: 0 auto;/*居中*/
+    overflow: hidden;
+}
+ul.article-list-group{
+    list-style: none; /*取消·*/
+    padding-left: 0;/*左间距*/
+}
+ul.article-list-group li{
+    border-bottom: 2px solid #eee;
+    overflow: hidden;
+    padding: 15px 0;
+}
+.avatar-group{
+    width: 40px;
+    height: 100%;
+    float: left;/*向左浮动*/
+}
+.avatar-group .avatar{
+    width: 40px;
+}
+.article-group{
+    float: left;
+    width: 670px;
+    margin-left: 10px;
+}
+.article-title a{
+    color: #259;
+    font-weight: 900;/*文字加粗*/
+}
+.article-info{
+    text-align: right;
+}
+.article-author{
+    margin-right: 20px;
+}

@@ -1,0 +1,17 @@
+.main{
+    background: #ffffff;
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.form-container{
+    width: 500px;
+    margin: 0 auto;
+    text-align: right;
+}
+.articleTitle{
+    text-align: center;
+}
+span.message{
+    color: red;
+}

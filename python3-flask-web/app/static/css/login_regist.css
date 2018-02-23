@@ -1,0 +1,16 @@
+.main{
+    background: #ffffff;
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.form-container{
+    width: 300px;
+    margin: 0 auto;
+}
+.logintitle{
+    text-align: center;
+}
+span.message{
+    color: red;
+}

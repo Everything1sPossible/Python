@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %}发布文章{% endblock %}
+
+{% block head %}
+    <link href="{{url_for('static', filename='css/article_management/article.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h3 class="articleTitle">发布文章</h3>
+        <form class="form-container" id="loginform" name="loginform" method="post" action="{{ url_for('index.to_add_article') }}">
+            <div class="form-group">
+                <input type="text" id="arTitle" name="arTitle" class="form-control" placeholder="标题" value="{{ arTitle }}" required autofocus>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="10" cols="20" id="arContent" name="arContent" placeholder="请输入内容" required>{{ arContent }}</textarea>
+            </div>
+            <div>
+                <span class="message">{{ message }}</span>
+            </div>
+            <button id="button" class="btn btn-primary " type="submit">立即发布</button>
+        </form>
+    </div>
+{% endblock %}
